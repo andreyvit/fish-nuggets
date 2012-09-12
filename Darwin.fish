@@ -3,11 +3,13 @@
 # - Your user specific file (~/.config/fish/<username>.fish)
 # - Your host specific file (~/.config/fish/<hostname>.fish)
 
-# Textmate defaults to /usr/bin/mate, but let's check for /usr/local/bin/mate
-if test -f "/usr/local/bin/mate"
-	set -x EDITOR "/usr/local/bin/mate -w"
-else
-	set -x EDITOR "/usr/bin/mate -w"
+# TextMate and Sublime Text install to /usr/bin, but let's check /usr/local/bin and ~/.bin too
+for mate in subl mate
+    for bin in /usr/local/bin /usr/bin
+        if test -z "$EDITOR" -a -f "$bin/$mate"
+            set -x EDITOR "$bin/$mate -w"
+        end
+    end
 end
 
 
