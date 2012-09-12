@@ -12,5 +12,8 @@ for mate in subl mate
     end
 end
 
-
 set BROWSER open
+
+
+# prefer Homebrew-installed software to the system one
+set PATH /usr/local/bin $PATH
